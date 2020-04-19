@@ -1,6 +1,5 @@
 ---
 - hosts: ansible-server
-  become: true
 
   tasks:
   - name: create docker image using war file
@@ -9,11 +8,11 @@
       chdir: /opt/k8s-lab
 
   - name: create tag to image
-    command: docker tag simple-devops-image vikas24775/simple-devops-image
+    command: docker tag simple-devops-image vikas24775/vikas-cicd
 
   - name: push image on to dockerhub
-    command: docker push vikas/simple-devops-image
+    command: docker push vikas24775/vikas-cicd
 
   - name: remove docker images form ansible server
-    command: docker rmi simple-devops-image:latest vikas24774/simple-devops-image
+    command: docker rmi simple-devops-image:latest vikas24774/vikas-cicd
     ignore_errors: yes
