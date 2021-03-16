@@ -4,11 +4,13 @@
 1. Create Ubuntu EC2 instance
 1. install AWSCLI
    ```sh
+    apt get update 
     curl https://s3.amazonaws.com/aws-cli/awscli-bundle.zip -o awscli-bundle.zip
-    apt install unzip python
+    apt install unzip python -y
     unzip awscli-bundle.zip
     #sudo apt-get install unzip - if you dont have unzip in your system
     ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
+    aws --version
     ```
 
 1. Install kubectl on ubuntu instance
@@ -16,11 +18,13 @@
    curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
     chmod +x ./kubectl
     sudo mv ./kubectl /usr/local/bin/kubectl
+    kubectl version
    ```
 
 1. Install kops on ubuntu instance
    ```sh
-    curl -LO https://github.com/kubernetes/kops/releases/download/$(curl -s https://api.github.com/repos/kubernetes/kops/releases/latest | grep tag_name | cut -d '"' -f 4)/kops-linux-amd64
+    curl -LO  https://github.com/kubernetes/kops/releases/download/1.15.0/kops-linux-amd64
+    # don't use -- curl -LO https://github.com/kubernetes/kops/releases/download/$(curl -s https://api.github.com/repos/kubernetes/kops/releases/latest | grep tag_name | cut -d '"' -f 4)/kops-linux-amd64
     chmod +x kops-linux-amd64
     sudo mv kops-linux-amd64 /usr/local/bin/kops
     ```
